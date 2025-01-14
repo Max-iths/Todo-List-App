@@ -13,7 +13,7 @@ const app = Vue.createApp({
     methods: {
         addTodo() {
             if(this.newTodo.trim().length > 0) {
-                this.tasks.push({task: this.newTodo.trim(), done: false})
+                this.tasks.push({text: this.newTodo.trim(), done: false})
                 this.newTodo=''
             }
         },
