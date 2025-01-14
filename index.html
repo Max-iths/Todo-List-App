@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo App</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div id="app">
+        <h1>Todo List</h1>
+        <input type="text" v-model="newTodo" placeholder="New Todo" >
+        <button @click="addTodo()" id="add">Add Todo</button>
+        <div v-if="tasks.length === 0" id="notasks">
+            <p>No tasks left</p>
+        </div>
+        <ol>
+            <li v-for="(task, index) in tasks" :key="task">
+                <label>
+                    <input type="checkbox" :value="task" >
+                    {{ task }}
+                </label>
+                <button @click="finished(); disable();" :disabled="isFinished">Done</button>
+                <button @click="deleteTodo(index)" class="delete-btn">Delete</button>
+            </li>
+        </ol>
+    </div>
+
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="index.js"></script>
+</body>
+</html>
