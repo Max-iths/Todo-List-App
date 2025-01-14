@@ -11,16 +11,18 @@
         <h1>Todo List</h1>
         <input type="text" v-model="newTodo" placeholder="New Todo" >
         <button @click="addTodo()" id="add">Add Todo</button>
-        <div v-if="tasks.length === 0" id="notasks">
+        <div v-if="notDone === 0" id="notasks">
             <p>No tasks left</p>
+        </div>
+        <div v-else>
+            <p>You have <strong>{{ notDone }}</strong> tasks left</p>
         </div>
         <ol>
             <li v-for="(task, index) in tasks" :key="task">
                 <label>
-                    <input type="checkbox" :value="task" >
-                    {{ task }}
+                    <input type="checkbox" :value="task" v-model="task.done" @change="updateDones(task)" >
+                    {{ task.text }}
                 </label>
-                <button @click="finished(); disable();" :disabled="isFinished">Done</button>
                 <button @click="deleteTodo(index)" class="delete-btn">Delete</button>
             </li>
         </ol>
